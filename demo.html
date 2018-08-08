@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handlebars</title>
+    <style>
+        .card{
+            font-size:14px;
+            line-height: 24px;
+            float: left;
+            margin:10px;
+            padding:5px;
+            color: #333;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="card">
+
+</div>
+<script src="https://cdn.bootcss.com/handlebars.js/2.0.0/handlebars.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/x-handlebars-template" id="template">
+    {{#each this}}
+        <div class="card">
+            <div>{{chinese @index}}、</div>
+            <div>name:{{name}}</div>
+            {{#if birthday}}
+                <div>birthday:{{birthday}}</div>
+            {{/if}}
+            <div>home:{{home}}</div>
+            <div>job:{{job}}</div>
+            <ul>
+                {{#each books}}
+                <li
+                    {{#isFirst @index}} style="color:red" {{/isFirst}}
+                    {{#isBlue ../books}} style="color:blue;" {{/isBlue}}
+                >
+                    {{addOne @../index}}-{{addOne @index}}{{this}}
+                </li>
+                {{/each}}
+            </ul>
+            <ul>
+                {{#each books}}
+                <li
+                    {{#isFirst @index}} style="color:red" {{/isFirst}}
+                    {{#if ../blue}} style="color:blue;" {{/if}}
+                >
+                {{addOne @../index}}-{{addOne @index}}{{this}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/each}}
+</script>
+<script>
+    var data=[{
+        name:'jack',
+        birthday:'2018/06/06',
+        home:'china',
+        job:'teacher',
+        books:['《欺骗的艺术》','《入侵的艺术》','《线上幽灵》']
+    },{
+        name:'lily',
+        birthday:'2018/07/07',
+        home:'china',
+        job:'teacher',
+        books:['《与苹果一起疯狂》']
+    },{
+        name:'rose',
+        home:'china',
+        job:'teacher'
+    }];
+
+    Handlebars.registerHelper("chinese",function(value){
+        var arr=['一','二','三'];
+        if(this.books && this.books.length>2){
+            this.blue=1
+        };
+        return arr[value]
+    });
+    Handlebars.registerHelper("addOne",function(value){
+        return value+1
+    });
+    Handlebars.registerHelper("isFirst",function(value,options){
+        if(value==0){
+            return options.fn(this)
+        }
+    });
+    Handlebars.registerHelper("isBlue",function(value,options){
+        if(value && value.length>2){
+            return options.fn(this)
+        }
+    })
+
+
+    var t=$('#template').html();
+    var f=Handlebars.compile(t);
+    var h=f(data);
+    $('#card').html(h)
+</script>
+</body>
+</html>
