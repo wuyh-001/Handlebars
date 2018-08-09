@@ -2,9 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Handlebars</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+<div id="container">
+    <div id="header">
+        <h1>我的笔记本</h1>
+        <h3>你的指尖，有改变世界的力量</h3>
+    </div>
 
+    <!-- 课程列表 -->
+    <div id="content"></div>
+    <!--分页-->
+    <div id="page" class="page"></div>
+    <!--遮罩层-->
+    <div class="overlap"></div>
+    <!--弹出框-->
+    <div class="notedetail">
+        <div class="chapterdiv" id="chapter"></div>
+        <div class="note-middle"></div>
+        <div class="notediv" id="note"></div>
+    </div>
+
+</div>
+<!--课程列表-->
+<script type="text/x-handlebars-template" id="class-template">
+    <ul class="clearfix">
+        {{#each this}}
+        <li data-id="{{id}}">
+            <div class="clearfix">
+                <img src="{{image}}" alt=""/>
+                <div class="titlediv">
+                    <h3 class="title">{{title}}</h3>
+                    {{#equal hasnote 1}}
+                    <span class="hasnote">（有笔记）</span>
+                    {{/equal}}
+                </div>
+            </div>
+            <span class="subtitle">{{subtitle}}</span>
+            <div class="timespan {{#isLong timespan}} long {{else}} short {{/isLong}}">时间：{{timespan}}</div>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--分页-->
+<script type="text/x-handlebars-template" id="page-template">
+    <ul class="clearfix">
+        {{#each this}}
+        <li data-id="{{index}}"
+           {{#if cur}} class="cur" {{/if}}
+            {{#if clickable}} class="clickable" {{/if}}
+        >
+            {{{text}}}
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--课程章节-->
+<script type="text/x-handlebars-template" id="chapter-template">
+    <ul class="titleul">
+        {{#each this}}
+        <li class="titleli">
+            <div class="title">{{addOne @index}}、{{title}}</div>
+            <ul>
+                {{#each subTitle}}
+                <li class="subtitle">
+                    {{addOne @../index}}-{{addOne @index}}、
+                        <a href="http://imooc.com/{{titletype}}/{{mid}}">{{title}}</a>
+                    {{#if timespan}}
+                        <span class="time">({{timespan}})</span>
+                    {{/if}}
+                    {{#isVideo titletype}}
+                        <span class="type">(视频)</span>
+                    {{/isVideo}}
+                </li>
+                {{/each}}
+            </ul>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--笔记章节-->
+<script type="text/x-handlebars-template" id="note-template">
+    <ul class="noteul">
+        {{#each this}}
+        <li>
+            <div class="time">{{formatDate notetime}}</div>
+            <div class="content">{{{content}}}</div>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+
+
+
+<script src="https://cdn.bootcss.com/handlebars.js/2.0.0/handlebars.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

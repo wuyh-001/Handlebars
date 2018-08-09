@@ -14,25 +14,24 @@ a:hover{ text-decoration:none;}
 
 /* 容器 */
 #container {
-    width: 902px;
     margin: 0 auto;
 }
 
 /* 头部 */
 #header {
     background-color: #eee;
-    padding: 40px;
+    padding: 20px;
 }
 
 #header h1 {
     font-size: 28px;
-    color: #81aae7;
-    text-align: center;
+    color: #000;
+
 }
 
 #header h3 {
-    color: #795e4c;
-    text-align: center;
+    color: #666;
+
     margin-top: 20px;
     font-size: 24px;
 }
@@ -111,131 +110,137 @@ a:hover{ text-decoration:none;}
 .tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px; line-height: 25px; padding: 0 10px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;vertical-align: middle;} 
 .tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;} 
 .tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca; border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;} 
-.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;} 
+.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
 
-/* 锁屏 */
-#lock {
-    width: 100%;
-    height: 100%;
+
+
+
+
+
+
+
+.page{
+    text-align: center;
+}
+.page ul{
+    margin-top:60px;
+    margin-bottom: 60px;
+    display: inline-block;
+}
+.page li{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    border-radius:50%;
+    background-color: #f0f0f0;
+}
+.page li.cur{
+    background-color: #ffedb2;
+}
+.page li.clickable{
+    background-color:#d6f2ff;
+}
+.page li.clickable:hover{
+    cursor:pointer;
+    background-color: #b9cbf7;
+}
+
+.overlap{
     position: fixed;
     left: 0;
     top: 0;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-}
-
-.modal {
-    width: 800px;
-    height: 600px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-    display: none;
-}
-
-#chapter, #note {
-    width: 49%;
+    width: 100%;
     height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
 }
 
-#chapter {
-    background-color: rgb(206, 181, 181);
+.notedetail{
+    position: fixed;
+    left: 10%;
+    top: 10%;
+    width: 80%;
+    height: 80%;
+    min-width: 800px;
+    background-color: white;
+    box-shadow: 0px 0px 200px #f7ff00;
+    display: none;
+}
+
+.chapterdiv,.notediv{
+    width: 48%;
+    height: 100%;
     float: left;
+    overflow: auto;
 }
-
-#note {
-    background-color: rgb(156, 167, 128);
-    float: right;
-}
-
-#note-middle {
+.note-middle {
     width: 4%;
     height: 100%;
     background: url('../images/middle.jpg') repeat-y;
-    background-size: contain;
-    position: absolute;
-    z-index: 1001;
-    left: 48%;
-}
-
-/* 章节大纲部分 */
-
-#chapter > ul, #note > ul {
-    width: 98%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 15px;
-    overflow: auto;
-}
-
-#chapter > ul h2 {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#chapter > ul > li {
-    padding: 5px 0;
-}
-
-#chapter .chapter-title {
-    height: 22px;
-    line-height: 22px;
-    font-size: 16px;
-    color: rgba(46, 98, 177, 0.529);
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.chapter-subtitle {
-    padding-left: 5%;
-}
-
-.chapter-subtitle li {
-    height: 20px;
-    line-height: 20px;
-}
-
-.chapter-subtitle h4.chapter-subtitle-item {
-    max-width: 80%;
-    font-size: 14px;
-    color: rgb(124, 103, 103);
-    font-style: normal;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    background-size: 100% 5%;
     float: left;
 }
-
-.chapter-subtitle .chapter-timespan {
-    display: block;
-    float: right;
+.chapterdiv{
+    background-color:#e8e8ff;
 }
-
-/* 笔记部分 */
-
-#note ul {
-    padding-left: 5%;
-    padding-top: 15px;
+.notediv{
+    background-color:#ffe3e5;
 }
-
-#note h2 {
-    color: #428bca;
-    font-size: 18px;
+.chapterdiv .titleul{
+     width: 80%;
+     margin: 20px auto;
 }
-
-#note .format-date {
-    color: #795e4c;
-}
-
-/* empty */
-
-.empty {
-    color: rgb(155, 51, 51);
-    text-align: center;
+.chapterdiv .title{
+     font-size: 20px;
+ }
+.chapterdiv .subtitle{
     font-size: 16px;
-    padding: 5% 0;
+    text-indent: 30px;
+    line-height: 30px;
+}
+.chapterdiv .time,.chapterdiv .type{
+    font-size: 12px;
+}
+.notediv .noteul{
+    width: 80%;
+    margin: 20px auto;
+}
+.notediv .btn{
+    margin: 20px 0px;
+    text-align: center;
+}
+.noteul .btn button{
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    font-size:20px;
+    background-color:#86ff00;
+    border-radius:20px;
+    border:none;
+    cursor:pointer;
+    outline:none;
+    transition:all 0.2s linear 0s;
+}
+.noteul .btn button:hover{
+    background-color: #7ed621;
+}
+.notediv .noteul li{
+    margin:20px 0 10px 0px;
+}
+.notediv .time{
+    color: gray;
+    font-size: 14px;
+}
+.notediv .content{
+    margin-top: 5px;
+    background-color:#fff0f2;
+    box-shadow: 2px 2px 2px #ffc9ce;
+    padding: 10px;
+}
+.notediv .content p{
+    margin-top: 10px;
+    line-height: 30px;
 }
 
